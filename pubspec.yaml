@@ -1,6 +1,8 @@
 name: easy_permission_handler
 description: Permission handler now got very easy to integrate
 version: 1.0.0
+repository: https://github.com/karanm4797/EasyPermissionHandler
+license: MIT
 
 environment:
   sdk: '>=3.0.6 <4.0.0'

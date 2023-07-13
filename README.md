@@ -1,39 +1,25 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+Use this package to simplify the permission handling in your project
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+You can ask single permission like this : 
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+MyPermissionHandler.askPermission(Permission.camera).then((value) async {
+    if (value.isGranted) {
+        //Whatever you want to do when permission is granted
+    }));
+    } else {
+        MyPermissionHandler.showPermissionDialog(context, value.isPermanentlyDenied, Permission.camera, "Camera");
+    }
+});
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+And for asking the multiple permissions : 
 
-## Features
+MyPermissionHandler.askPermissions([Permission.camera]).then((value) async {
+    if (value) {
+       //Whatever you want to do when permission is granted
+    } else {
+        MyPermissionHandler.showPermissionDialog(context, true, Permission.camera, AppStrings.bluetoothPermission);
+    }
+});
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Note : Do not forget to define permission in AndroidManifest.xml file for Android and info.plist file for iOS.
